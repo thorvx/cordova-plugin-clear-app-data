@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin id="cordova-plugin-clear-data" version="0.0.3"
+<plugin id="cordova-plugin-clear-app-data" version="0.0.3"
         xmlns="http://www.phonegap.com/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -7,8 +7,8 @@
     <keywords>cordova,webview,cache,clear,android,ios</keywords>
     <description>Cordova plugin to clear locally persistent user data on Android and iOS.</description>
 
-    <repo>https://github.com/thorvx/cordova-plugin-clear-data.git</repo>
-    <issue>https://github.com/thorvx/cordova-plugin-clear-data/issues</issue>
+    <repo>https://github.com/thorvx/cordova-plugin-clear-app-data.git</repo>
+    <issue>https://github.com/thorvx/cordova-plugin-clear-app-data/issues</issue>
     <author email="diego.ot@gmail.com" href="http://www.dot-bo.com">Diego Olguin</author>
 
     <license>MIT</license>
