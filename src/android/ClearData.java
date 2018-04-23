@@ -32,6 +32,7 @@ import org.json.JSONException;
 public class ClearData extends CordovaPlugin
 {
     private static final String ACTION_CACHE = "cache";
+	private static final String ACTION_DATA = "data";
 
     private ClearData self;
 
@@ -55,6 +56,8 @@ public class ClearData extends CordovaPlugin
 
             if( action.equals(ACTION_CACHE) ) {
                 clearCache();
+            } else if( action.equals(ACTION_DATA) ) {
+                clearApplicationData();
             }else{
                 handleError("Unknown plugin action: " + action);
                 return false;
@@ -78,6 +81,21 @@ public class ClearData extends CordovaPlugin
             }
         });
     }
+	
+	private void clearApplicationData() {
+	  File cache = cordova.getActivity().getApplicationContext().getCacheDir();
+	  File appDir = new File(cache.getParent());
+	  Log.d(TAG, "AppDir = " + appDir);
+	  if (appDir.exists()) {
+		String[] children = appDir.list();
+		for (String s : children) {
+		  if (!s.equals("lib")) {
+			Log.d(TAG, "Delete " + s);
+			deleteDir(new File(appDir, s));
+		  }
+		}
+	  }
+	}
 
     private void sendPluginSuccess(){
         PluginResult result = new PluginResult(PluginResult.Status.OK);
