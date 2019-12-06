@@ -66,19 +66,23 @@ public class ClearData extends CordovaPlugin
     }
 	
 	private void clearApplicationData() {
-	  File cache = cordova.getActivity().getApplicationContext().getCacheDir();
-	  File appDir = new File(cache.getParent());
-	  Log.d(TAG, "AppDir = " + appDir);
-	  if (appDir.exists()) {
-		String[] children = appDir.list();
-		for (String s : children) {
-		  if (!s.equals("lib")) {
-			Log.d(TAG, "Delete " + s);
-			deleteDir(new File(appDir, s));
-		  }
-		}
-      }
-      sendPluginSuccess();
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                File cache = cordova.getActivity().getApplicationContext().getCacheDir();
+                File appDir = new File(cache.getParent());
+                Log.d(TAG, "AppDir = " + appDir);
+                if (appDir.exists()) {
+                    String[] children = appDir.list();
+                    for (String s : children) {
+                        if (!s.equals("lib")) {
+                            Log.d(TAG, "Delete " + s);
+                            deleteDir(new File(appDir, s));
+                        }
+                    }
+                }
+                sendPluginSuccess();
+            }
+        });
     }
     
     public static boolean deleteDir(File dir) {
